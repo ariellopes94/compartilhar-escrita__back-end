@@ -21,6 +21,8 @@ public class Comentario implements Serializable {
 	
 	private String comentario;
 	
+	//@JsonIgnore
+	//private int idPublicacao;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -29,11 +31,12 @@ public class Comentario implements Serializable {
 	public Comentario(){
 	}
 
-	public Comentario(Integer id, String comentario, Publicacao publicacao) {
+	
+
+	public Comentario(String comentario) {
 		super();
-		this.id = id;
 		this.comentario = comentario;
-		this.publicacao = publicacao;
+	//	this.idPublicacao = idPublicacao;
 	}
 
 	public Integer getId() {
@@ -51,7 +54,8 @@ public class Comentario implements Serializable {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-	
+
+
 	public Publicacao getPublicacao() {
 		return publicacao;
 	}

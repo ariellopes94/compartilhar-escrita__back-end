@@ -11,8 +11,8 @@ public class PublicacaoModelAssembler {
 	public PublicacaoDtoCurtir modelPublicacaoToPublicacaoDtoCurtir (Publicacao obj) {
 		   PublicacaoDtoCurtir publicacao = new PublicacaoDtoCurtir();
 		   
-		   publicacao.setId(obj.getId());
-		   
+		   publicacao.setIdPublicacao(obj.getId());
+		   publicacao.setUpvote(obj.getUpvote());
 		   return publicacao;
 	}
 }

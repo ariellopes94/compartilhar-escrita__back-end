@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.compartilhar.escrita.domain.Publicacao;
+import com.compartilhar.escrita.domain.assembler.PublicacaoModelAssembler;
 import com.compartilhar.escrita.domain.dto.PublicacaoDtoCurtir;
 import com.compartilhar.escrita.services.PublicacaoService;
 
@@ -25,6 +26,8 @@ public class PublicacaoResource {
 	@Autowired
 	private PublicacaoService publicacaoService;
 	
+	@Autowired
+	private PublicacaoModelAssembler publicacaoModelAssembler;
 	
 	@PostMapping
 	public ResponseEntity<Publicacao> create( @RequestBody Publicacao publicacao){
@@ -38,10 +41,13 @@ public class PublicacaoResource {
 	
 	
 	@PostMapping(value="like")
-	public ResponseEntity<Publicacao> curtirComentario(@RequestBody PublicacaoDtoCurtir publicacaoDtoCurtir) {
+	public PublicacaoDtoCurtir curtirComentario(@RequestBody PublicacaoDtoCurtir publicacaoDtoCurtir) {
 		
-		publicacaoService.curtirComentario(publicacaoDtoCurtir.getId());
-		return ResponseEntity.noContent().build();
+		
+		Publicacao publicacao = publicacaoService.curtirComentario(publicacaoDtoCurtir.getIdPublicacao());
+		PublicacaoDtoCurtir publicacaoCurtir = publicacaoModelAssembler.modelPublicacaoToPublicacaoDtoCurtir(publicacao);
+		
+		return publicacaoCurtir;
 		
 	}
 	

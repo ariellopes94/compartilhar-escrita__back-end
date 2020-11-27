@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.compartilhar.escrita.domain.Comentario;
 import com.compartilhar.escrita.domain.Publicacao;
+import com.compartilhar.escrita.domain.dto.ComentarioDto;
 import com.compartilhar.escrita.services.ComentarioService;
 import com.compartilhar.escrita.services.PublicacaoService;
 
@@ -29,8 +30,10 @@ public class ComentarioResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<Comentario> create( @RequestBody Comentario comentario){
-		Comentario obj = comentarioService.create(comentario);
+	public ResponseEntity<Comentario> create( @RequestBody ComentarioDto comentarioDto){
+		
+		
+		Comentario obj = comentarioService.create(comentarioDto);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
 				buildAndExpand(obj.getId()).toUri();

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.compartilhar.escrita.domain.Comentario;
 import com.compartilhar.escrita.domain.Publicacao;
+import com.compartilhar.escrita.domain.assembler.ComentarioModelAssembler;
+import com.compartilhar.escrita.domain.dto.ComentarioDto;
 import com.compartilhar.escrita.repositories.ComentarioRepository;
 import com.compartilhar.escrita.repositories.PublicacaoRepository;
 
@@ -18,12 +20,25 @@ public class ComentarioService {
 	
 	@Autowired
 	PublicacaoService publicacaoService;
+	
+	@Autowired
+	ComentarioModelAssembler comentarioModelAssembler;
 
-	public Comentario create(Comentario comentario) {
+	public Comentario create(ComentarioDto comentarioDto) {
+		
+		Comentario comentario = new Comentario();
+		
+		comentario = comentarioModelAssembler.modelComentarioDtoToComentario(comentarioDto);
+		
+		
 		comentario.setId(null);
 		
+		
+		
+		
+		
 		//TESTE
-		comentario.setPublicacao(publicacaoService.findById(1));
+		comentario.setPublicacao(publicacaoService.findById(comentarioDto.getIdPublicacao()));
 		
 		return  comentarioRepository.save(comentario);
 	}
