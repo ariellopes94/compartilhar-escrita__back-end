@@ -1,5 +1,6 @@
 package com.compartilhar.escrita.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,9 @@ public class PublicacaoService {
 	
 	public Publicacao create(Publicacao publicacao) {
 		publicacao.setId(null);
+		
+		//melhorar depois
+		publicacao.setDataPublicacao(new Date());
 		return  publicacaoRepository.save(publicacao);
 	}
 	

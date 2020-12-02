@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 
 @Entity
@@ -29,11 +31,13 @@ public class Publicacao implements Serializable {
 	private String titulo;
 	private String texto;
 	private int upvote;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataPublicacao;
 	
 	@OneToOne
 	@Cascade(CascadeType.ALL)
-	private Usuario usuarios;
+	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "publicacao")
 	private List<Comentario> comentarios = new ArrayList<>();
@@ -41,14 +45,14 @@ public class Publicacao implements Serializable {
 	public Publicacao() {
 	}
 	
-	public Publicacao(Integer id, String titulo, String texto, int upvote, Date dataPublicacao, Usuario usuarios) {
+	public Publicacao(Integer id, String titulo, String texto, int upvote, Date dataPublicacao, Usuario usuario) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.texto = texto;
 		this.upvote = upvote;
 		this.dataPublicacao = dataPublicacao;
-		this.usuarios = usuarios;
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
@@ -88,12 +92,12 @@ public class Publicacao implements Serializable {
 		return dataPublicacao;
 	}
 
-	public Usuario getUsuarios() {
-		return usuarios;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setUsuarios(Usuario usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public List<Comentario> getComentarios() {
