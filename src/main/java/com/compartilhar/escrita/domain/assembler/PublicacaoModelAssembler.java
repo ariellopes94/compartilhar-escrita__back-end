@@ -8,11 +8,11 @@ import com.compartilhar.escrita.domain.dto.PublicacaoDtoCurtir;
 @Component
 public class PublicacaoModelAssembler {
 
-	public PublicacaoDtoCurtir modelPublicacaoToPublicacaoDtoCurtir (Publicacao obj) {
-		   PublicacaoDtoCurtir publicacao = new PublicacaoDtoCurtir();
-		   
-		   publicacao.setIdPublicacao(obj.getId());
-		   publicacao.setUpvote(obj.getUpvote());
-		   return publicacao;
+	public PublicacaoDtoCurtir modelPublicacaoToPublicacaoDtoCurtir(Publicacao obj) {
+		PublicacaoDtoCurtir publicacao = new PublicacaoDtoCurtir();
+
+		publicacao.setIdPublicacao(obj.getId());
+		publicacao.setUpvote(obj.getUpvote());
+		return publicacao;
 	}
 }

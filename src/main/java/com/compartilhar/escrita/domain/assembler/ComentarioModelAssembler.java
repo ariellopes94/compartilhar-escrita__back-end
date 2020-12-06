@@ -8,11 +8,11 @@ import com.compartilhar.escrita.domain.dto.ComentarioDto;
 @Component
 public class ComentarioModelAssembler {
 
-	public Comentario modelComentarioDtoToComentario (ComentarioDto obj) {
-		
-		   Comentario comentario = new Comentario();
-		   
-		   comentario.setComentario(obj.getComentario());
-		   return comentario;
+	public Comentario modelComentarioDtoToComentario(ComentarioDto obj) {
+
+		Comentario comentario = new Comentario();
+
+		comentario.setComentario(obj.getComentario());
+		return comentario;
 	}
 }

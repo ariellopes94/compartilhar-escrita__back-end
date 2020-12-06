@@ -9,6 +9,7 @@ CREATE table comentario (
    id bigint not null auto_increment,
    comentario varchar(455),
    publicacao_id integer,
+   usuario_id integer,
 primary key (id)
 ) engine=InnoDB default charset=utf8;
 

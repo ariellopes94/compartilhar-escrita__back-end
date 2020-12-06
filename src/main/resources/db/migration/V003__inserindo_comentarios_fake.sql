@@ -1,11 +1,12 @@
 use compartilharescrita;
-	insert into comentario (id, comentario, publicacao_id) values (1, "Muito bom", 1);
+     INSERT into usuario (id, nome) VALUES (11, "Ariel");
+	insert into comentario (id, comentario, publicacao_id, usuario_id) values (1, "Muito bom", 1, 11);
 	insert into comentario (id, comentario, publicacao_id) values (2, "Uma creatina e um wheyzinho", 1);
 	insert into comentario (id, comentario, publicacao_id) values (3, "Um whey bom e barato, recomendo procurar na growth", 1);	
 	insert into comentario (id, comentario, publicacao_id) values (4, "Lembrando que é sempre bom passar por um profissional, ele pode te receitar alguns exames para você checar que está te fazendo mal, e boa sorte nessa jornada.", 1);
 	insert into comentario (id, comentario, publicacao_id) values (5, "Sugiro que passa em um médico ou nutricionista. Eles podem te auxiliar melhor nesses assuntos.", 1);
-		
-insert into comentario (id, comentario, publicacao_id) values (6, "dá uma procurada no Youtube que com certeza você vai encontrar
+
+    insert into comentario (id, comentario, publicacao_id) values (6, "dá uma procurada no Youtube que com certeza você vai encontrar
     a solução para seu problema do microfone, não sei se você usa fone de ouvi ou o 
 	próprio microfone do pc ou notebook. Se for fone, muitas vezes pode ser um mal contato do fio ou algo assim.", 2);
 	

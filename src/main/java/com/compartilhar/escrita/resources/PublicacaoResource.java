@@ -3,6 +3,8 @@ package com.compartilhar.escrita.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,55 +26,46 @@ import com.compartilhar.escrita.domain.dto.PublicacaoDtoCurtir;
 import com.compartilhar.escrita.repositories.PublicacaoRepository;
 import com.compartilhar.escrita.services.PublicacaoService;
 
-@CrossOrigin //Resolvendo error de cross-origin local
+@CrossOrigin // Resolvendo error de cross-origin local
 @RestController
 @RequestMapping(value = "publicacao")
 public class PublicacaoResource {
-	
+
 	@Autowired
 	private PublicacaoService publicacaoService;
-	
+
 	@Autowired
 	private PublicacaoRepository publicacaoRepository;
-	
+
 	@Autowired
 	private PublicacaoModelAssembler publicacaoModelAssembler;
-	
+
 	@PostMapping
-	public ResponseEntity<Publicacao> create( @RequestBody Publicacao publicacao){
+	public ResponseEntity<Publicacao> create(@Valid @RequestBody Publicacao publicacao) {
 		Publicacao obj = publicacaoService.create(publicacao);
-		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
-				buildAndExpand(obj.getId()).toUri();
-	
+
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
 		return ResponseEntity.created(uri).build();
 	}
-	
-	
-	@PostMapping(value="like")
+
+	@PostMapping(value = "like")
 	public PublicacaoDtoCurtir curtirComentario(@RequestBody PublicacaoDtoCurtir publicacaoDtoCurtir) {
-		
-		
 		Publicacao publicacao = publicacaoService.curtirComentario(publicacaoDtoCurtir.getIdPublicacao());
-		PublicacaoDtoCurtir publicacaoCurtir = publicacaoModelAssembler.modelPublicacaoToPublicacaoDtoCurtir(publicacao);
-		
+		PublicacaoDtoCurtir publicacaoCurtir = publicacaoModelAssembler
+				.modelPublicacaoToPublicacaoDtoCurtir(publicacao);
+
 		return publicacaoCurtir;
-		
 	}
-	
+
 	@GetMapping
-	public Page<Publicacao> findByAll(@PageableDefault(size = 5, sort = "dataPublicacao", direction = Direction.DESC) Pageable pageable){
+	public Page<Publicacao> findByAll(
+			@PageableDefault(size = 5, sort = "dataPublicacao", direction = Direction.DESC) Pageable pageable) {
 		Page<Publicacao> publicacaoPage = publicacaoRepository.findAll(pageable);
-		
+
 		List<Publicacao> publicacaoModel = publicacaoPage.getContent();
-		Page<Publicacao> publicacaoModelPage = new PageImpl<>(publicacaoModel, pageable, publicacaoPage.getTotalElements());
+		Page<Publicacao> publicacaoModelPage = new PageImpl<>(publicacaoModel, pageable,
+				publicacaoPage.getTotalElements());
 		return publicacaoModelPage;
 	}
-	
-	/*
-	@GetMapping
-	public List<Publicacao> findByAll(){
-		return publicacaoService.findAll();
-	}
-*/
 }

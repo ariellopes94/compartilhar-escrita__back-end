@@ -3,7 +3,7 @@ package com.compartilhar.escrita.domain.dto;
 public class PublicacaoDtoCurtir {
 
 	private Integer idPublicacao;
-	private int upvote;  
+	private int upvote;
 
 	public Integer getIdPublicacao() {
 		return idPublicacao;
@@ -20,7 +20,5 @@ public class PublicacaoDtoCurtir {
 	public void setUpvote(int upvote) {
 		this.upvote = upvote;
 	}
-	
-	
 
 }
