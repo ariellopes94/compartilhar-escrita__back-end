@@ -26,9 +26,6 @@ public class Comentario implements Serializable {
 	@NotEmpty(message = "Comentario é obrigatório")
 	private String comentario;
 	
-	// @JsonIgnore
-	// private int idPublicacao;
-
 	@ManyToOne
 	@JsonIgnore
 	private Publicacao publicacao;
@@ -43,7 +40,6 @@ public class Comentario implements Serializable {
 	public Comentario(String comentario) {
 		super();
 		this.comentario = comentario;
-		// this.idPublicacao = idPublicacao;
 	}
 
 	public Integer getId() {

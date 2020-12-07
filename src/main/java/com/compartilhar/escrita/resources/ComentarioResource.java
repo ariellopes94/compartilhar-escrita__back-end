@@ -51,7 +51,6 @@ public class ComentarioResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	//@PageableDefault(size = 5, sort = "dataPublicacao", direction = Direction.DESC)
 	@GetMapping(value = "buscar/{id}")
 	public Page<Comentario> buscarComentarioPorPublicacao(@PageableDefault(size = 2, sort = "id", direction = Direction.DESC)Pageable pageable, @PathVariable int id){
 		Page<Comentario> publicacaoPage  = comentarioRepository.findByPublicacaoId(id, pageable);

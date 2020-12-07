@@ -21,7 +21,6 @@ public class PublicacaoService {
 	public Publicacao create(Publicacao publicacao) {
 		publicacao.setId(null);
 
-		// melhorar depois
 		publicacao.setDataPublicacao(new Date());
 		return publicacaoRepository.save(publicacao);
 	}
